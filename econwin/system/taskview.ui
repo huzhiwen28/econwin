@@ -1,0 +1,61 @@
+<ui version="4.0" >
+ <class>taskviewClass</class>
+ <widget class="QDialog" name="taskviewClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>589</width>
+    <height>558</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>任务观察</string>
+  </property>
+  <widget class="QPushButton" name="backpb" >
+   <property name="geometry" >
+    <rect>
+     <x>460</x>
+     <y>520</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tasktable" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>551</width>
+     <height>501</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text" >
+     <string>用户任务名称</string>
+    </property>
+   </column>
+   <column>
+    <property name="text" >
+     <string>用户任务间隔(ms)</string>
+    </property>
+   </column>
+   <column>
+    <property name="text" >
+     <string>用户任务状态</string>
+    </property>
+   </column>
+   <column>
+    <property name="text" >
+     <string>启停任务</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

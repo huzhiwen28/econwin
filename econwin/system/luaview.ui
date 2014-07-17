@@ -1,0 +1,73 @@
+<ui version="4.0" >
+ <class>luaviewClass</class>
+ <widget class="QDialog" name="luaviewClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>919</width>
+    <height>658</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>程序监控</string>
+  </property>
+  <widget class="QComboBox" name="cbfilenamelist" >
+   <property name="geometry" >
+    <rect>
+     <x>80</x>
+     <y>10</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>程序文件</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backpb" >
+   <property name="geometry" >
+    <rect>
+     <x>800</x>
+     <y>0</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="luaviewlb" >
+   <property name="geometry" >
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>871</width>
+     <height>611</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+   <property name="scaledContents" >
+    <bool>false</bool>
+   </property>
+   <property name="alignment" >
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

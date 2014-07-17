@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/econwin" >
+        <file>system/io0.PNG</file>
+        <file>system/io1.PNG</file>
+    </qresource>
+</RCC>

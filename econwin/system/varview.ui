@@ -1,0 +1,56 @@
+<ui version="4.0" >
+ <class>varviewClass</class>
+ <widget class="QDialog" name="varviewClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>594</width>
+    <height>573</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>全局变量</string>
+  </property>
+  <widget class="QPushButton" name="backbt" >
+   <property name="geometry" >
+    <rect>
+     <x>510</x>
+     <y>540</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="vartable" >
+   <property name="geometry" >
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>531</width>
+     <height>511</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text" >
+     <string>变量名</string>
+    </property>
+   </column>
+   <column>
+    <property name="text" >
+     <string>变量类型</string>
+    </property>
+   </column>
+   <column>
+    <property name="text" >
+     <string>变量值</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

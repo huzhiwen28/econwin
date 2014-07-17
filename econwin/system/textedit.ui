@@ -1,0 +1,207 @@
+<ui version="4.0" >
+ <class>texteditClass</class>
+ <widget class="QDialog" name="texteditClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>384</width>
+    <height>343</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>文字编辑</string>
+  </property>
+  <widget class="QPushButton" name="backpb" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>300</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>文字</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="wenzi" >
+   <property name="geometry" >
+    <rect>
+     <x>53</x>
+     <y>10</y>
+     <width>151</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>341</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>边框背景颜色</string>
+   </property>
+   <widget class="QRadioButton" name="rb_butouming" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>90</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>不透明</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rb_touming" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>90</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>透明</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>54</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>边框颜色</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb_biankuangyanse" >
+    <property name="geometry" >
+     <rect>
+      <x>80</x>
+      <y>110</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb_juxingyanse" >
+    <property name="geometry" >
+     <rect>
+      <x>80</x>
+      <y>140</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>54</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>边框厚度</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_biankuanghoudu" >
+    <property name="geometry" >
+     <rect>
+      <x>80</x>
+      <y>70</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>54</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>矩形颜色</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pb_ziti" >
+   <property name="geometry" >
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>77</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>设置字体</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8" >
+   <property name="geometry" >
+    <rect>
+     <x>210</x>
+     <y>40</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>文字颜色</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_wenzicolor" >
+   <property name="geometry" >
+    <rect>
+     <x>260</x>
+     <y>40</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

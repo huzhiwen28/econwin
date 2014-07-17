@@ -1,0 +1,90 @@
+<ui version="4.0" >
+ <class>modviewClass</class>
+ <widget class="QDialog" name="modviewClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>484</width>
+    <height>452</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>模块观察</string>
+  </property>
+  <widget class="QComboBox" name="cbmodid" >
+   <property name="geometry" >
+    <rect>
+     <x>80</x>
+     <y>10</y>
+     <width>69</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string> 选择模块</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2" >
+   <property name="geometry" >
+    <rect>
+     <x>30</x>
+     <y>50</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>模块类型</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit" >
+   <property name="geometry" >
+    <rect>
+     <x>80</x>
+     <y>50</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="portsview" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>451</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>端口信息</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backpb" >
+   <property name="geometry" >
+    <rect>
+     <x>380</x>
+     <y>420</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>返回</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

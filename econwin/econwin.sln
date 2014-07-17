@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "econwin", "econwin.vcproj", "{80224549-EDCE-4B17-B263-8AFF1196EDEB}"
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(Qt) = preSolution
+		Integration = True
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{80224549-EDCE-4B17-B263-8AFF1196EDEB}.Debug.ActiveCfg = Debug|Win32
+		{80224549-EDCE-4B17-B263-8AFF1196EDEB}.Debug.Build.0 = Debug|Win32
+		{80224549-EDCE-4B17-B263-8AFF1196EDEB}.Release.ActiveCfg = Release|Win32
+		{80224549-EDCE-4B17-B263-8AFF1196EDEB}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

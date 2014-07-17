@@ -1,0 +1,151 @@
+<ui version="4.0" >
+ <class>sysClass</class>
+ <widget class="QDialog" name="sysClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>632</width>
+    <height>128</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>ECONWIN系统</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox_2" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>771</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>port set</string>
+   </property>
+   <widget class="QLabel" name="label_2" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>choose port</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox" >
+    <property name="geometry" >
+     <rect>
+      <x>80</x>
+      <y>10</y>
+      <width>261</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3" >
+    <property name="geometry" >
+     <rect>
+      <x>520</x>
+      <y>10</y>
+      <width>77</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>停止</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4" >
+    <property name="geometry" >
+     <rect>
+      <x>390</x>
+      <y>10</y>
+      <width>33</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+    <property name="pixmap" >
+     <pixmap resource="../econwin.qrc" >:/econwin/system/io0.PNG</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4" >
+    <property name="geometry" >
+     <rect>
+      <x>430</x>
+      <y>10</y>
+      <width>77</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>启动</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2" >
+   <property name="geometry" >
+    <rect>
+     <x>134</x>
+     <y>61</y>
+     <width>77</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>任务</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton" >
+   <property name="geometry" >
+    <rect>
+     <x>51</x>
+     <y>61</y>
+     <width>77</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>变量</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5" >
+   <property name="geometry" >
+    <rect>
+     <x>217</x>
+     <y>61</y>
+     <width>77</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>模块</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbluaview" >
+   <property name="geometry" >
+    <rect>
+     <x>310</x>
+     <y>60</y>
+     <width>77</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>程序监控</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <resources>
+  <include location="../econwin.qrc" />
+ </resources>
+ <connections/>
+</ui>

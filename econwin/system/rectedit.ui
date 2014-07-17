@@ -1,0 +1,106 @@
+<ui version="4.0" >
+ <class>recteditClass</class>
+ <widget class="QDialog" name="recteditClass" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>310</width>
+    <height>199</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>矩形编辑</string>
+  </property>
+  <widget class="QPushButton" name="backpb" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>边框厚度</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="le_biankuanghoudu" >
+   <property name="geometry" >
+    <rect>
+     <x>70</x>
+     <y>10</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_biankuangyanse" >
+   <property name="geometry" >
+    <rect>
+     <x>70</x>
+     <y>50</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>边框颜色</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pb_juxingyanse" >
+   <property name="geometry" >
+    <rect>
+     <x>70</x>
+     <y>80</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>54</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>矩形颜色</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
