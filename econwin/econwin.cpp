@@ -1,5 +1,5 @@
 /*
-用户自己的主界面
+主界面，包含HMI主界面
 */
 #include <QString>
 #include <QtGui/QApplication>
@@ -41,9 +41,10 @@ extern QList<struct varDouble> varDoublelist;
 
 QMap<QString,struct _tnode> varmap;
 
-//虚拟机2
+//lua虚拟机2
 lua_State* L2;
-//虚拟机1
+
+//lua虚拟机1
 extern lua_State* L;
 
 //lua不支持多线程，采用独占锁
@@ -114,7 +115,6 @@ bool cross(struct _hmiwidget widget1,struct _hmiwidget widget2)
 		return false;
 }
 
-//屏幕背景控件
 MyWidget::MyWidget(QWidget *parent)
 : QWidget(parent)
 {
@@ -123,12 +123,7 @@ MyWidget::MyWidget(QWidget *parent)
 	connect(Act_movebehind, SIGNAL(triggered()), this, SLOT(movebehind()));
 
 }
-//屏幕重新绘制
-void MyWidget::animate()
-{
-	//repaint(0,0,400,400);
-	repaint();
-} 
+
 //屏幕重新绘制事件处理
 void MyWidget::paintEvent(QPaintEvent *event)
 {
@@ -954,7 +949,6 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 
 	//新增控件鼠标光标切换
 	if((hmistate == 1) 
-		//&& (hmisubject == 1)
 		&& (hmisubjectstep != 0))
 	{
 		if(crossflag == 0)
@@ -966,7 +960,6 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 
 	//新增控件跟踪鼠标坐标，绘制将添加的控件外框
 	if((hmistate == 1) 
-		//&& (hmisubject == 1)
 		&& (hmisubjectstep == 2))
 	{
 		endx = event->x();
@@ -998,15 +991,10 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 		}
 		else if(choosepointindex == 2)
 		{
-			//x = event->globalX();
 			y = event->y();
-			//changedx = x-origx;
 			changedy = y-origy;
-			//origx = x;
 			origy = y;
 
-			//hmiwidgetlist[currenthmiwidgetindex].x += changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].w -= changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].y += changedy;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].h -= changedy;
 
@@ -1021,7 +1009,6 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 			origx = x;
 			origy = y;
 
-			//hmiwidgetlist[currenthmiwidgetindex].x += changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].w += changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].y += changedy;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].h -= changedy;
@@ -1031,15 +1018,9 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 		else if(choosepointindex == 4)
 		{
 			x = event->x();
-			//y = event->globalY();
 			changedx = x-origx;
-			//changedy = y-origy;
 			origx = x;
-			//origy = y;
-			//hmiwidgetlist[currenthmiwidgetindex].x += changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].w += changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].y += changedy;
-			//hmiwidgetlist[currenthmiwidgetindex].h -= changedy;
 
 			repaint();
 		}
@@ -1051,24 +1032,16 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 			changedy = y-origy;
 			origx = x;
 			origy = y;
-			//hmiwidgetlist[currenthmiwidgetindex].x += changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].w += changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].y += changedy;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].h += changedy;
 
 			repaint();
 		}
 		else if(choosepointindex == 6)
 		{
-			//x = event->globalX();
 			y = event->y();
-			//changedx = x-origx;
 			changedy = y-origy;
-			//origx = x;
 			origy = y;
-			//hmiwidgetlist[currenthmiwidgetindex].x += changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].w += changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].y += changedy;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].h += changedy;
 
 			repaint();
@@ -1083,7 +1056,6 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 			origy = y;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].x += changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].w -= changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].y += changedy;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].h += changedy;
 
 			repaint();
@@ -1091,15 +1063,10 @@ void MyWidget::mouseMoveEvent( QMouseEvent * event )
 		else if(choosepointindex == 8)
 		{
 			x = event->x();
-			//y = event->globalY();
 			changedx = x-origx;
-			//changedy = y-origy;
 			origx = x;
-			//origy = y;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].x += changedx;
 			hmiproject.hmipagelist[currenthmipageindex][currenthmiwidgetindex].w -= changedx;
-			//hmiwidgetlist[currenthmiwidgetindex].y += changedy;
-			//hmiwidgetlist[currenthmiwidgetindex].h -= changedy;
 
 			repaint();
 		}
@@ -1275,7 +1242,6 @@ void MyWidget::mousePressEvent( QMouseEvent * event )
 	{
 		//进入状态机,新增控件左上角
 		if((hmistate == 1) 
-			//&& (hmisubject == 1)
 			&& (hmisubjectstep == 1))
 		{
 			beginx = event->x();
@@ -1284,7 +1250,6 @@ void MyWidget::mousePressEvent( QMouseEvent * event )
 		}
 		//新增控件右下角
 		else if((hmistate == 1) 
-			//&& (hmisubject == 1)
 			&& (hmisubjectstep == 2))
 		{
 			if(hmisubject == 1)
@@ -2282,8 +2247,6 @@ void MyWidget::movebehind()
 			hmiproject.hmipagelist[currenthmipageindex][index2] = hmiwidget2;
 			repaint();
 
-			//cout << "haha" << endl;
-			//cout << index1 << "," << index2 << endl;
 			peconwin->projectneedsave = true;
 
 			if(peconwin->projectneedsave)
@@ -2384,7 +2347,6 @@ econwin::econwin(QWidget *parent, Qt::WFlags flags)
 
 	for(iD = varLuavarlist.begin();iD != varLuavarlist.end();++ iD)
 	{
-		//lua double
 		t.type = 11;
 		t.p = ((void *)(*iD).p);
 		varmap.insert((*iD).id,t);
@@ -2418,7 +2380,7 @@ econwin::econwin(QWidget *parent, Qt::WFlags flags)
 
 		basewidget = new MyWidget(this);
 		basewidget->setGeometry(200+30,140,640,480);
-		basewidget->animate();
+		basewidget->repaint();
 		basewidget->setMouseTracking(true);
 
 		int firstpageindex = hmiproject.idlist.indexOf(hmiproject.firstpageid);
@@ -2530,7 +2492,7 @@ econwin::econwin(QWidget *parent, Qt::WFlags flags)
 
 		basewidget = new MyWidget(this);
 		basewidget->setGeometry(200+30,140,640,480);
-		basewidget->animate();
+		basewidget->repaint();
 		basewidget->setMouseTracking(true);
 
 		int firstpageindex = hmiproject.idlist.indexOf(hmiproject.firstpageid);

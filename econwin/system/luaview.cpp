@@ -1,3 +1,6 @@
+/*
+lua脚本监控，只对全局变量进行监控
+*/
 #include "luaview.h"
 #include <QString>
 #include <QtGui/QApplication>
@@ -12,13 +15,14 @@
 #include "lua.hpp"
 extern lua_State* L;
 
+//全局变量map，根据变量名来取得变量的值
 QMap<QString,struct _var> globalvarmap;
 
-//QMap<int,struct _varlist> linevarmap;
-
+//文件行和变量对应的map
 QList<struct _filelinevarmap> filelinevarmaplist;
-
+//lua文件内容
 QList<QString> filecontent;
+//文件名列表
 QList<QString> filenamelist;
 
 //lua不支持多线程，采用独占锁
@@ -29,12 +33,18 @@ extern QTextStream cin;
 extern QTextStream cout;
 extern QTextStream cerr;
 
+//下拉bar
 QScrollBar * v;
 
+//
 bool freshgloballuavar = false;
+//当前文件在list中的index
 int currentfileindex = 0;
 
+//显示的起始行，结束行
 int beginline,endline;
+
+//显示的老的起始行结束行
 int oldbeginline,oldendline;
 
 Widget::Widget(QWidget *parent)
@@ -45,12 +55,7 @@ Widget::Widget(QWidget *parent)
 	connect(Act_editval, SIGNAL(triggered()), this, SLOT(editval()));
  }
 
- void Widget::animate()
- {
-     //repaint(0,0,400,400);
-     repaint();
- } 
-
+//绘制控件
  void Widget::paintEvent(QPaintEvent *event)
  {
 	 {
@@ -87,10 +92,7 @@ Widget::Widget(QWidget *parent)
 				 struct _var gvar = globalvarmap.value(var.name);
 				 if(gvar.vartype == 0)
 				 {
-					 //painter.boundingRect(QRectF(var.loc*6,(varlist.line-2)*16-6,16*10,8),Qt::AlignLeft,QString::number(gvar.varval.ivar));
-					 //painter.drawRect(QRectF(var.loc*6,(varlist.line-2)*16-14,6* QString::number(gvar.varval.ivar).length()+2,8));
 					 painter.drawText(var.loc*6,(varlist.line-2)*16-6, QString::number(gvar.varval.ivar));
-
 				 }
 				 else if(gvar.vartype == 1)
 				 {
@@ -112,7 +114,7 @@ Widget::Widget(QWidget *parent)
 		 painter.end();
 	 }
  } 
-
+//右键菜单
 void Widget::contextMenuEvent(QContextMenuEvent *event)
 {
 	 for(int i=beginline;i< endline;i++)
@@ -190,41 +192,8 @@ void Widget::contextMenuEvent(QContextMenuEvent *event)
 
 void Widget::editval()
 {
-	QMessageBox msgBox;
-	msgBox.setText("找不到记录文件");
-	msgBox.setWindowTitle("错误");
-	msgBox.setStandardButtons(QMessageBox::Yes );
-	QAbstractButton* tb = msgBox.button(QMessageBox::Yes);
-	tb->setText("确定");
-	msgBox.exec();
+	//编辑代码值，待完成
 }
-
- GLWidget::GLWidget(QWidget *parent)
-     :QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
- {
-	 textFont.setPixelSize(100);
-    textPen = QPen(Qt::black);
-
- }
-
- void GLWidget::animate()
- {
-     repaint();
- } 
-
-  void GLWidget::paintEvent(QPaintEvent *event)
- {
- 	QPainter painter;
-	painter.begin(this);
-    painter.setRenderHint(QPainter::Antialiasing);
-
-	for(int i=0;i< filecontent.count();i++)
-	{
-		painter.drawText(5,i*16,filecontent[i]);
-	}
-	painter.end();
- 
- } 
 
 luaview::luaview(QWidget *parent,Qt::WFlags flags)
 : QDialog(parent, flags)
@@ -263,10 +232,6 @@ luaview::luaview(QWidget *parent,Qt::WFlags flags)
 	native = new Widget(this);
 	native->setGeometry(30,20,871,filecontent.count()*16);
 
-
-	//openGL = new GLWidget(this);
-	//openGL->setGeometry(30,20,871,filecontent.count()*16);
-
 	scrollArea = new QScrollArea(this);
 	scrollArea->setBackgroundRole(QPalette::Light);
 	scrollArea->setWidget(native);
@@ -292,10 +257,8 @@ luaview::luaview(QWidget *parent,Qt::WFlags flags)
 
 	first = false;
 
-	//connect(&mytimer, SIGNAL(timeout()), openGL, SLOT(animate()));
-	//connect(&mytimer, SIGNAL(timeout()), native, SLOT(animate()));
 	connect(&mytimer, SIGNAL(timeout()), this, SLOT(mytimeupdate()));
-	mytimer.start(200); //100ms定时
+	mytimer.start(200); //200ms定时
 }
 
 luaview::~luaview()
@@ -309,13 +272,13 @@ void luaview::closeEvent(QCloseEvent *e)
 	close();
 }
 
+//定时刷新
 void luaview::mytimeupdate()
 {
 	freshgloballuavar = true;
 	mytimer.stop();
 
-	native->animate();
-	//openGL->animate();
+	native->repaint();
 
 	mytimer.start(200);
 
@@ -328,7 +291,7 @@ void luaview::on_backpb_clicked()
 }
 
 
-
+//选择lua脚本文件
 void luaview::on_cbfilenamelist_currentIndexChanged ( int index )
 {
 	//第一次窗口生成的时候不刷新

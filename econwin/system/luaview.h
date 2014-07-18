@@ -15,6 +15,7 @@
 #include <QGLWidget>
 #include <QPushButton>
 
+//继承QWidget，在Widget中显示脚本
 class Widget : public QWidget
  {
      Q_OBJECT
@@ -25,7 +26,6 @@ class Widget : public QWidget
 	 QAction*    Act_editval;
 
  public slots:
-     void animate();
 	 void editval();
 
  protected:
@@ -34,22 +34,6 @@ class Widget : public QWidget
 	 void contextMenuEvent(QContextMenuEvent *);
  };
 
-
-class GLWidget : public QGLWidget
- {
-     Q_OBJECT
-
- public:
-     GLWidget(QWidget *parent);
-	 QFont textFont;
-    QPen textPen;
-
- public slots:
-     void animate();
-
- protected:
-     void paintEvent(QPaintEvent *event);
- };
 
 class luaview : public QDialog
 {
@@ -62,7 +46,6 @@ public:
 	QPicture BackgroudPic;
 	QScrollArea* scrollArea;
 	Widget* native;
-	GLWidget* openGL;
 
 	QPicture varPic;
 	QLabel *Lbvar;
@@ -85,28 +68,35 @@ private slots:
 
 };
 
+//lua脚本支持3种类型的值
 union _uvar{
 	int ivar;
 	double dvar;
 	bool bvar;
 };
+
+//
 struct _var{
 	char vartype;//0 int 1bool 2double
 	union _uvar varval;
 };
 
+//变量名和变量值映射map
 extern QMap<QString,struct _var> globalvarmap;
 
+//变量在行内位置
 struct _linevar{
 	QString name;
 	int loc;
 };
 
+//一行拥有的变量以及其位置
 struct _varlist{
 	QList<struct _linevar> varlist;
 	int line;
 };
 
+//对应行的变量
 struct _filelinevarmap{
 	QMap<int,struct _varlist> linevarmap;
 };

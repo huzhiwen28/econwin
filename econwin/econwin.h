@@ -139,7 +139,6 @@ class MyWidget : public QWidget
 	QAction*    Act_movebehind;
 
  public slots:
-     void animate();
 	 void movebehind();
 
  protected:
