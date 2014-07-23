@@ -8,7 +8,7 @@ hmiproject={
 		color = '#c0c0c0',
 		needpasswd = 0,
 		passwd = [[]],
-		len = 16,
+		len = 15,
 		[0]={
 			x = 225,
 			y = 14,
@@ -362,28 +362,6 @@ hmiproject={
 				border = 1,
 				bordercolor = '#00ff00',
 				intercolor = '#a0a0a4'
-			}
-		},
-		[15]={
-			x = 411,
-			y = 40,
-			w = 77,
-			h = 41,
-			widgettype = 1,
-			data = {
-				text = [[°´Å¥]],
-				fontcolor = '#ffffff',
-				fontfamily = 'ËÎÌå',
-				fontpointSize = 12,
-				fontweight = 50,
-				fontitalic = 0,
-				operation = 1,
-				targetpage = 0,
-				targetvar = '',
-				colortype = 1,
-				coloroff = '#a0a0a4',
-				coloron = '#00ff00',
-				colorvar = ''
 			}
 		}
 	},
