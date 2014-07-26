@@ -268,6 +268,7 @@ luaview::~luaview()
 
 void luaview::closeEvent(QCloseEvent *e)
 {
+	freshgloballuavar = false;
 	mytimer.disconnect(this);
 	close();
 }
