@@ -25,8 +25,8 @@ struct tdevice107* tdevice107_init(unsigned int id,unsigned char luaflag)
 	pdevice->id = id;
 
 	//内存初始化
-	memset(pdevice->sendbuff,0,100);
-	memset(pdevice->recvbuff,0,100);
+	memset(pdevice->sendbuff,0,1);
+	memset(pdevice->recvbuff,0,1);
 
 	//模块类型
 	pdevice->moduletype = 1;
@@ -54,25 +54,18 @@ struct tdevice107* tdevice107_init(unsigned int id,unsigned char luaflag)
 	struct tcommnode comnode;
 	comnode.id = id;
 	comnode.pcommsendbuff =pdevice->sendbuff;
-	comnode.sendpacklen = 1500;
-	comnode.recvpacklen = 1500;
-	comnode.commsendbufflen = comnode.sendpacklen-15;
+	comnode.PDOwritelen = 1;
+	comnode.PDOwriteaddr = 0;
+
 	comnode.pcommrecvbuff = pdevice->recvbuff;
-	comnode.intervalms = 0;//通迅间隔时间，对于linux要设定，否者通迅占用过多的cpu，windows可以不设
-	comnode.loopset = 1;
-	comnode.loopcnt = comnode.loopset;
+	comnode.PDOreadlen = 1;
+	comnode.PDOreadaddr = 0;
 	comnode.pdevice =(void *)pdevice;
 	comnode.in_handle = tdevice107_in_handler;
 	comnode.out_handle = tdevice107_out_handler;
-	comnode.shakehand = false;
 
 	commnodes.append(comnode);
 
-	//模块的参数初始化，普通包的长度
-	pdevice->sendbuff[79] = (unsigned char)(comnode.sendpacklen & 0x00ff);
-	pdevice->sendbuff[80] = (unsigned char)((comnode.sendpacklen >> 8) & 0x00ff);
-	pdevice->sendbuff[81] = (unsigned char)(comnode.recvpacklen & 0x00ff);
-	pdevice->sendbuff[82] = (unsigned char)((comnode.recvpacklen >> 8) & 0x00ff);
 	return pdevice;
 }
 //提供给lua的注册接口
@@ -154,8 +147,8 @@ struct tdevice207*  tdevice207_init(unsigned int id,unsigned char luaflag)
 	//id
 	pdevice->id = id;
 	//初始化内存
-	memset(pdevice->sendbuff,0,100);
-	memset(pdevice->recvbuff,0,100);
+	memset(pdevice->sendbuff,0,2);
+	memset(pdevice->recvbuff,0,2);
 
 	//模块类型
 	pdevice->moduletype = 2;
@@ -194,25 +187,16 @@ struct tdevice207*  tdevice207_init(unsigned int id,unsigned char luaflag)
 	struct tcommnode comnode;
 	comnode.id = id;
 	comnode.pcommsendbuff =pdevice->sendbuff;
-	comnode.sendpacklen = 1500;
-	comnode.recvpacklen = 1500;
-	comnode.commsendbufflen = comnode.sendpacklen-15;
+	comnode.PDOwritelen = 2;
+	comnode.PDOwriteaddr = 0;
 	comnode.pcommrecvbuff = pdevice->recvbuff;
-	comnode.intervalms = 0;//通迅间隔时间，对于linux要设定，否者通迅占用过多的cpu，windows可以不设
-	comnode.loopset = 1;
-	comnode.loopcnt = comnode.loopset;
+	comnode.PDOreadlen = 2;
+	comnode.PDOreadaddr = 0;
 	comnode.pdevice =(void *)pdevice;
 	comnode.in_handle = tdevice207_in_handler;
 	comnode.out_handle = tdevice207_out_handler;
-	comnode.shakehand = false;
 
 	commnodes.append(comnode);
-
-	//模块的参数初始化，普通包的长度
-	pdevice->sendbuff[79] = (unsigned char)(comnode.sendpacklen & 0x00ff);
-	pdevice->sendbuff[80] = (unsigned char)((comnode.sendpacklen >> 8) & 0x00ff);
-	pdevice->sendbuff[81] = (unsigned char)(comnode.recvpacklen & 0x00ff);
-	pdevice->sendbuff[82] = (unsigned char)((comnode.recvpacklen >> 8) & 0x00ff);
 
 	return pdevice;
 }

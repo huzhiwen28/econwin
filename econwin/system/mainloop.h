@@ -25,22 +25,22 @@ extern QList<struct tcommnode> commnodes;
 struct tcommnode {
 	//commid
 	unsigned int id;
+
 	//发送数据区指针
 	unsigned char *pcommsendbuff;
-	//发送数据长度
-	unsigned int commsendbufflen;
+
 	//接收数据区指针
 	unsigned char *pcommrecvbuff;
-	//通讯间隔时间，毫秒
-	unsigned int intervalms;
-	//多少循环通讯一次，设置值
-	unsigned int loopset;
-	//当前循环计数，计数为0的时候，就进行一次通讯
-	unsigned int loopcnt;
-	//发送数据包长度
-	unsigned int sendpacklen;
-	//接收数据包长
-	unsigned int recvpacklen;
+
+	//定时写的长度
+	unsigned char PDOwritelen;
+	//定时写的目标地址
+	unsigned char PDOwriteaddr;
+	//定时读的地址
+	unsigned char PDOreadaddr;
+	//定时读的长度
+	unsigned char PDOreadlen;
+
 	//设备结构指针
 	void * pdevice;
 	//设置数据和通信数据映射处理in,p为设备结构指针
@@ -48,7 +48,7 @@ struct tcommnode {
 	//设置数据和通信数据映射处理out,p为设备结构指针
 	void (*out_handle)(void * p);
 	//节点是否握手成功
-	bool shakehand;
+	//bool shakehand;
 };
 
 class backend: public QThread

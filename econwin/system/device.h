@@ -65,8 +65,8 @@ struct _devicenode{
 //107设备
 struct tdevice107
 {
-   	unsigned char sendbuff[1500];
-   	unsigned char recvbuff[1500];
+   	unsigned char sendbuff[1];
+   	unsigned char recvbuff[1];
    	unsigned int id;
 	unsigned char moduletype;//模块类型
 
@@ -91,8 +91,8 @@ void tdevice107_out_handler(void *p);
 //207设备
 struct tdevice207
 {
-   	unsigned char sendbuff[1500];
-   	unsigned char recvbuff[1500];
+   	unsigned char sendbuff[2];
+   	unsigned char recvbuff[2];
    	unsigned int id;
 	unsigned char moduletype;//模块类型
 
