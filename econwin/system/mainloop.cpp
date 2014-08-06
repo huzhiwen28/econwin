@@ -372,6 +372,8 @@ void backend::run()
 						luamutex.unlock();
 					}
 				}
+				//等待1ms，尽量形成1ms周期的通信节奏，防止网络包过快，PC机丢包，同时防止CPU利用率过高
+				msleep(1);
 			}
 			//没有通信节点
 			else
