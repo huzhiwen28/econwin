@@ -53,6 +53,7 @@ QString projecthmifilename = "";
 bool projecthmirun = false;
 
 #ifdef ENVWINDOWS
+
 //定时器处理函数，空函数
 void WINAPI onTimeFunc(UINT wTimerID, UINT msg,DWORD dwUser,DWORD dwl,DWORD dw2)
 {
@@ -77,7 +78,6 @@ void initGlobalvar(void);
 extern QList<QString> filenamelist;
 
 
-//屏保程序使用的事件控制器
 KeyPressEater::KeyPressEater(QObject *parent) :
 QObject(parent)
 {
@@ -87,7 +87,7 @@ KeyPressEater::~KeyPressEater()
 {
 
 }
-
+//各类按键事件处理
 bool KeyPressEater::eventFilter(QObject *obj, QEvent *event)
 {
 	//鼠标按键事件
@@ -117,7 +117,7 @@ bool KeyPressEater::eventFilter(QObject *obj, QEvent *event)
 		return QObject::eventFilter(obj, event);
 	}
 }
-
+/*
 static int myexchange(lua_State* L)
 {
 	double a = luaL_checknumber(L,1);
@@ -129,6 +129,8 @@ static int myexchange(lua_State* L)
 	lua_pushnumber(L,b);
 	return 2;
 }
+*/
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
@@ -150,8 +152,8 @@ int main(int argc, char *argv[])
 	L = luaL_newstate();
 	luaL_openlibs(L);//打开标准库
 
-	lua_pushcfunction(L,myexchange);
-	lua_setglobal(L,"myexchange");
+	//lua_pushcfunction(L,myexchange);
+	//lua_setglobal(L,"myexchange");
 
 	lua_pushcfunction(L,myvar_register);
 	lua_setglobal(L,"var_register");
@@ -459,7 +461,7 @@ int main(int argc, char *argv[])
 	w.show();
 
 #ifdef ENVWINDOWS
-	//多媒体定时器，为了提高工控机线程调度精度而加入，微软内部的耦合，万恶的不确定性
+	//多媒体定时器，为了提高工控机线程调度精度
 	MMRESULT timer_id;
 	timer_id = timeSetEvent(1, 1, (LPTIMECALLBACK)onTimeFunc, DWORD(1), TIME_PERIODIC);
 #endif
@@ -511,14 +513,12 @@ int main(int argc, char *argv[])
 		if(pcap_compile(adhandle, &fcode, "ether dst 0:0:0:0:0:f0", 1, 0) < 0)
 		{
 			fprintf(stderr,"\nError compiling filter: wrong syntax.\n");
-			//return;
 		}
 
-		//set the filter
+		//设置过滤器
 		if(pcap_setfilter(adhandle, &fcode)<0)
 		{
 			fprintf(stderr,"\nError setting the filter\n");
-			//return;
 		}	
 		printf("\nlistening on %s...\n", d->description);
 
@@ -526,11 +526,12 @@ int main(int argc, char *argv[])
 		pcap_freealldevs(alldevs);
 	}
 
-	//后台线程
+	//后台线程，跑通信发送帧，PLC任务等
 	backend backendinst;
 	backendinst.start();
 	backendinst.setPriority(QThread::TimeCriticalPriority);
 
+	//后台线程，以太网数据帧接受处理
 	backend2 backendinst2;
 	backendinst2.start();
 	backendinst2.setPriority(QThread::TimeCriticalPriority);
@@ -538,7 +539,7 @@ int main(int argc, char *argv[])
 	a.connect(&a, SIGNAL(lastWindowClosed()), &a, SLOT(quit()));
 	a.exec();
 
-	//退出任务界面后，首先停止用户逻辑任务，然后要把所有的输出值设置为默认0
+	//退出任务界面后，首先停止用户逻辑任务
 	allshake = false;
 
 	//模块输出值设置为默认值
@@ -564,10 +565,12 @@ int main(int argc, char *argv[])
 
 	threadrun = false;
 
+	//等待线程退出
 	backendinst.wait();
 	backendinst2.wait();
 
 	DBBackendinst.wait();
+	//关闭lua虚拟机
 	lua_close(L);
 	lua_close(L3);
 
